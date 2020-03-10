@@ -19,6 +19,13 @@ def confParser(section):
         tmp_dict[option] = value
     return tmp_dict
 
+websites_search_urls = confParser("websites_search_url")
+base_urls = confParser("base_urls")
+products_conf = confParser("products_conf")
+details_conf = confParser("details_conf")
+general_conf = confParser("general_conf")
+min_products = general_conf["min_products"]
+max_products = general_conf["max_products"]
 
 @app.route('/product_search', methods=['GET'])
 def get_product_searched():
@@ -32,11 +39,4 @@ def home():
     return "<h1>Best Product API</h1>"
     
 if __name__=='__main__':
-    websites_search_urls = confParser("websites_search_url")
-    base_urls = confParser("base_urls")
-    products_conf = confParser("products_conf")
-    details_conf = confParser("details_conf")
-    general_conf = confParser("general_conf")
-    min_products = general_conf["min_products"]
-    max_products = general_conf["max_products"]
     app.run(host='0.0.0.0')
