@@ -2,7 +2,7 @@ import json, configparser
 from flask import Flask, request
 from ScrapeProducts import scrape_search_websites
 
-app = Flask(__name__)
+APP = Flask(__name__)
 
 parser = configparser.ConfigParser()
 parser.read("conf/config.ini")
@@ -39,4 +39,4 @@ if __name__=='__main__':
     min_products = general_conf["min_products"]
     max_products = general_conf["max_products"]
     #scrape_search_websites("face wash", websites_search_urls, min_products, max_products, base_urls, products_conf, details_conf)
-    app.run(port=9090, debug=True, host='0.0.0.0')
+    #app.run(port=9090, debug=True, host='0.0.0.0')
