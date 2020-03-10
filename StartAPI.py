@@ -29,8 +29,8 @@ def get_product_searched():
 
 @app.route('/')
 def home():
-    return '<h1>Best Product API</h1>"
-
+    return "<h1>Best Product API</h1>"
+    
 if __name__=='__main__':
     websites_search_urls = confParser("websites_search_url")
     base_urls = confParser("base_urls")
