@@ -27,6 +27,10 @@ def get_product_searched():
     products_list = scrape_search_websites(query, websites_search_urls, min_products, max_products, base_urls, products_conf, details_conf)
     return json.dumps(products_list, indent=2, sort_keys=True)
 
+@app.route('/')
+def home():
+    return "<h1>Best Product API</h1>"
+
 if __name__=='__main__':
 
     websites_search_urls = confParser("websites_search_url")
@@ -38,5 +42,4 @@ if __name__=='__main__':
     general_conf = confParser("general_conf")
     min_products = general_conf["min_products"]
     max_products = general_conf["max_products"]
-    #scrape_search_websites("face wash", websites_search_urls, min_products, max_products, base_urls, products_conf, details_conf)
-    app.run(port=9090, debug=True, host='0.0.0.0')
+    app.run('0.0.0.0')
