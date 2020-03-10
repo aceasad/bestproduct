@@ -4,3 +4,4 @@ beautifulsoup4
 configparser
 lxml
 gunicorn
+requests
