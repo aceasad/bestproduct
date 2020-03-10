@@ -29,17 +29,14 @@ def get_product_searched():
 
 @app.route('/')
 def home():
-    return "<h1>Best Product API</h1>"
+    return '<h1>Best Product API</h1>"
 
 if __name__=='__main__':
-
     websites_search_urls = confParser("websites_search_url")
     base_urls = confParser("base_urls")
     products_conf = confParser("products_conf")
     details_conf = confParser("details_conf")
-    #brand_conf = confParser("brand_conf")
-
     general_conf = confParser("general_conf")
     min_products = general_conf["min_products"]
     max_products = general_conf["max_products"]
-    app.run('0.0.0.0')
+    app.run(host='0.0.0.0')
