@@ -3,3 +3,4 @@ flask_restful
 beautifulsoup4
 configparser
 lxml
+gunicorn
