@@ -28,18 +28,8 @@ function setup_python_venv() {
     source ./venv/bin/activate
 }
 
-function clone_app_repository() {
-    printf "***************************************************\n\t\tFetching App \n***************************************************\n"
-    # Clone and access project directory
-    echo ======== Cloning and accessing project directory ========
-    git clone https://github.com/aceasad/bestproduct.git
-    cd bestproduct
-}
 
 function setup_app() {
-    printf "***************************************************\n    Installing App dependencies and Env Variables \n***************************************************\n"
-    setup_env
-    # Install required packages
     echo ======= Installing required packages ========
     pip install -r requirements.txt
 
@@ -111,7 +101,6 @@ EOF'
 
 initialize_worker
 setup_python_venv
-clone_app_repository
 setup_app
 setup_nginx
 configure_startup_service
