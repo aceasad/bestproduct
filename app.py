@@ -9,7 +9,7 @@ parser.read("conf/config.ini")
 
 def confParser(section):
     if not parser.has_section(section):
-        print("No section info  rmation are available in config file for", section)
+        print("No section information are available in config file for", section)
         return
     # Build dict
     tmp_dict = {}
@@ -30,7 +30,6 @@ max_products = general_conf["max_products"]
 @app.route('/search', methods=['GET'])
 def get_product_searched():
     query = request.args.get("query")
-    #query = data["query"]
     products_list = scrape_search_websites(query, websites_search_urls, min_products, max_products, base_urls, products_conf, details_conf)
     return json.dumps(products_list, indent=2, sort_keys=True)
 
