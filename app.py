@@ -27,16 +27,12 @@ general_conf = confParser("general_conf")
 min_products = general_conf["min_products"]
 max_products = general_conf["max_products"]
 
-@app.route('/product_search', methods=['GET'])
+@app.route('/', methods=['GET'])
 def get_product_searched():
     query = request.args.get("query")
     #query = data["query"]
     products_list = scrape_search_websites(query, websites_search_urls, min_products, max_products, base_urls, products_conf, details_conf)
     return json.dumps(products_list, indent=2, sort_keys=True)
-
-@app.route('/')
-def home():
-    return "<h1>Best Product API</h1>"
     
 if __name__=='__main__':
-    app.run(host='0.0.0.0')
+    app.run(host='127.0.0.1',port="8000")
