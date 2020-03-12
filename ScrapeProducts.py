@@ -18,7 +18,6 @@ def get_html(url):
             page_obj = None
             _err = True
             cnt += 1
-            print("%s URL not accessible " % (url))
 
     return page_obj
 
@@ -87,25 +86,21 @@ def parse_websites(src, page_obj, min_products, max_products, base_url, cnf_prdc
             product["src_website"] = base_url
             all_products_list.append(product)
             prdct_cntr = prdct_cntr + 1
-            print(src + " => Product " + str(prdct_cntr) + " scraped successfully...")
             if prdct_cntr >= max_products:
                 break
         except Exception as e:
             print(e)
             pass
     if len(all_products_list) < min_products:
-        print(src + "  data less than min products...Discarding results...")
         all_products_list.clear()
     return all_products_list
 
 def scrape_search_websites(query, websites_search_urls, min_products, max_products, base_urls, products_conf, details_conf):
-    print("User Query: " + query)
     query = query.replace(" ", "+")
     list_all_products = []
     min_products = int(min_products.decode("utf-8"))
     max_products = int(max_products.decode("utf-8"))
     for src in websites_search_urls:
-        print("Starting " + src + " parsing...")
         search_url = websites_search_urls[src].decode("utf-8")
         base_url = base_urls[src].decode("utf-8")
         cnf_prdct = products_conf[src].decode("utf-8")

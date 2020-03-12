@@ -30,7 +30,9 @@ max_products = general_conf["max_products"]
 @app.route('/search', methods=['GET'])
 def get_product_searched():
     query = request.args.get("query")
+    print("Search Request recieved for"+query)
     products_list = scrape_search_websites(query, websites_search_urls, min_products, max_products, base_urls, products_conf, details_conf)
+    print("Search Result recieved for"+query)
     return json.dumps(products_list, indent=2, sort_keys=True)
 
 @app.route('/')
