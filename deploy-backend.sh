@@ -80,8 +80,8 @@ function configure_startup_service () {
     User=ubuntu
     Group=www-data
     WorkingDirectory=/home/ubuntu/bestproduct
-    Environment="PATH=/home/ubuntu/venv/bin"
-    ExecStart=/home/ubuntu/venv/bin/gunicorn --workers 3 --bind unix:bestproduct.sock -m 007 wsgi:app --timeout 120
+    Environment="PATH=/home/ubuntu/bestproduct/venv/bin"
+    ExecStart=/home/ubuntu/bestproduct/venv/bin/gunicorn --workers 3 --bind unix:bestproduct.sock -m 007 wsgi:app --timeout 120 --
 
     [Install]
     WantedBy=multi-user.target

@@ -39,4 +39,4 @@ def index():
     return "<h1>Welcome to Best Product API</h1>"    
 
 if __name__=='__main__':
-    app.run()
+    app.run(host='0.0.0.0')
