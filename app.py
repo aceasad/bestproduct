@@ -1,5 +1,6 @@
 import json, configparser
 from flask import Flask, request
+from datetime import datetime
 from ScrapeProducts import scrape_search_websites
 
 app = Flask(__name__)
@@ -9,7 +10,7 @@ parser.read("conf/config.ini")
 
 def confParser(section):
     if not parser.has_section(section):
-        print("No section information are available in config file for", section)
+        print("No section info  rmation are available in config file for", section)
         return
     # Build dict
     tmp_dict = {}
@@ -19,25 +20,30 @@ def confParser(section):
         tmp_dict[option] = value
     return tmp_dict
 
-websites_search_urls = confParser("websites_search_url")
-base_urls = confParser("base_urls")
-products_conf = confParser("products_conf")
-details_conf = confParser("details_conf")
-general_conf = confParser("general_conf")
-min_products = general_conf["min_products"]
-max_products = general_conf["max_products"]
 
-@app.route('/search', methods=['GET'])
+@app.route('/product_search', methods=['GET'])
 def get_product_searched():
+    start = datetime.now()
     query = request.args.get("query")
-    print("Search Request recieved for"+query)
+    #query = data["query"]
     products_list = scrape_search_websites(query, websites_search_urls, min_products, max_products, base_urls, products_conf, details_conf)
-    print("Search Result recieved for"+query)
+    end = datetime.now()
+    diff = end - start
+    print(str(diff.seconds) + " seconds")
     return json.dumps(products_list, indent=2, sort_keys=True)
 
-@app.route('/')
-def index():
-    return "<h1>Welcome to Best Product API</h1>"    
-
 if __name__=='__main__':
+
+    websites_search_urls = confParser("websites_search_url")
+    base_urls = confParser("base_urls")
+    products_conf = confParser("products_conf")
+    details_conf = confParser("details_conf")
+    #brand_conf = confParser("brand_conf")
+
+    general_conf = confParser("general_conf")
+    min_products = general_conf["min_products"]
+    max_products = general_conf["max_products"]
+
+    #scrape_search_websites("face wash", websites_search_urls, min_products, max_products, base_urls, products_conf, details_conf)
+
     app.run()
