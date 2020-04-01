@@ -5,3 +5,5 @@ configparser
 lxml
 gunicorn
 requests
+pandas
+forex-python

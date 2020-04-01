@@ -20,14 +20,14 @@ def get_html(url):
             page_obj = None
             _err = True
             cnt += 1
-            print("%s URL not accessible " % (url))
+            #print("%s URL not accessible " % (url))
 
     return page_obj
 
 def parse_websites(src, search_url, min_products, max_products, base_url, cnf_prdct, cnf_dtl, process_name):
     all_products_list = []
     page_obj = get_html(search_url)
-    print("Process => " + str(process_name))
+    #print("Process => " + str(process_name))
     cnf_prdct_tmp = cnf_prdct.split("|")
     cnf_dtl_tmp = cnf_dtl.split("|")
 
@@ -91,14 +91,14 @@ def parse_websites(src, search_url, min_products, max_products, base_url, cnf_pr
             product["src_website"] = base_url
             all_products_list.append(product)
             prdct_cntr = prdct_cntr + 1
-            print("Process => " + str(process_name) +src + " => Product " + str(prdct_cntr) + " scraped successfully...")
+            #print("Process => " + str(process_name) +src + " => Product " + str(prdct_cntr) + " scraped successfully...")
             if prdct_cntr >= max_products:
                 break
         except Exception as e:
-            print(e)
+            #print(e)
             pass
     if len(all_products_list) < min_products:
-        print(src + "  data less than min products...Discarding results...")
+        #print(src + "  data less than min products...Discarding results...")
         all_products_list.clear()
 
     list_all_products.extend(all_products_list)
@@ -116,7 +116,7 @@ def scrape_search_websites(query, websites_search_urls, min_products, max_produc
 
 
     for src in websites_search_urls:
-        print("Starting " + src + " parsing...")
+        #print("Starting " + src + " parsing...")
         search_url = websites_search_urls[src].decode("utf-8")
         base_url = base_urls[src].decode("utf-8")
         cnf_prdct = products_conf[src].decode("utf-8")
@@ -131,7 +131,7 @@ def scrape_search_websites(query, websites_search_urls, min_products, max_produc
             proc_pool.apply_async(parse_websites, args=(src, search_url, min_products, max_products, base_url, cnf_prdct, cnf_dtl, process_name))
             #time.sleep(1)
         except Exception as e:
-            print(e)
+            #print(e)
             #proc_pool.terminate()
             pass
         process_name = process_name + 1
