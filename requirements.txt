@@ -6,4 +6,4 @@ lxml
 gunicorn
 requests
 pandas
-forex-python
+regex
